@@ -1,0 +1,62 @@
+[worldserver]
+
+########################################
+# mod-hardcore configuration
+########################################
+#
+# Opt-in permadeath ruleset: a character flags itself Hardcore
+# ('.hardcore on') and, from that point on, a single death is final. What
+# "final" means is controlled by Hardcore.DeathPolicy below.
+#
+# Hardcore is conceptually self-found (no external gear/gold), but this
+# module only owns the permadeath flag/death handling - it does not itself
+# block trade/mail/the Auction House. Install mod-self-found alongside it for
+# that.
+#
+
+#
+#    Hardcore.Enable
+#        Master on/off switch for this module. 0 = the module loads, the
+#        '.hardcore' command still exists but always reports Hardcore as
+#        disabled, and no death-policy enforcement hook does anything.
+#        Default: 1
+#
+Hardcore.Enable = 1
+
+#
+#    Hardcore.DeathPolicy
+#        What happens to a Hardcore character the moment it dies.
+#
+#          ghost   - (DEFAULT, non-destructive) the character becomes a
+#                    permanently locked ghost: resurrection and graveyard
+#                    release are both blocked forever. Nothing is renamed or
+#                    deleted; the character stays visible, stuck where it
+#                    fell.
+#          archive - (non-destructive) the character is kicked and, once
+#                    safely logged out, renamed so the original name frees
+#                    up. It can never be logged into again (instantly kicked
+#                    on any further login attempt), but its data is kept.
+#          delete  - (DESTRUCTIVE) the character is kicked and, once safely
+#                    logged out, permanently deleted from the database. This
+#                    cannot be undone - only set this if you actually want
+#                    fallen characters removed entirely.
+#
+#        Any unrecognised value falls back to "ghost".
+#        Default: ghost
+#
+Hardcore.DeathPolicy = ghost
+
+#
+#    Hardcore.MinLevelToFlag
+#        Minimum character level required to run '.hardcore on'. Keeps
+#        brand-new level 1 characters from opting in by accident.
+#        Default: 1
+#
+Hardcore.MinLevelToFlag = 1
+
+#
+#    Hardcore.AnnounceDeaths
+#        1 = broadcast a server-wide message when a Hardcore character falls.
+#        Default: 1
+#
+Hardcore.AnnounceDeaths = 1
