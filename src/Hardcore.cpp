@@ -155,7 +155,7 @@ namespace Hardcore
         // SQL aborts the whole worldserver boot, so we create the tables
         // programmatically and tolerate failure at runtime instead (matches
         // mod-self-found's / mod-guild-tax's approach).
-        CharacterDatabase.Execute(
+        CharacterDatabase.DirectExecute(
             "CREATE TABLE IF NOT EXISTS `hardcore_flags` ("
             "`guid` INT UNSIGNED NOT NULL, "
             "`enabled` TINYINT UNSIGNED NOT NULL DEFAULT 1, "
@@ -163,7 +163,7 @@ namespace Hardcore
             "PRIMARY KEY (`guid`)"
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
 
-        CharacterDatabase.Execute(
+        CharacterDatabase.DirectExecute(
             "CREATE TABLE IF NOT EXISTS `hardcore_deaths` ("
             "`id` INT UNSIGNED NOT NULL AUTO_INCREMENT, "
             "`guid` INT UNSIGNED NOT NULL, "
